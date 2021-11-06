@@ -1,0 +1,52 @@
+#!/bin/bash
+
+#Argument stored in fileName variable
+
+fileName="$1"
+
+dispNum="$2"
+
+#initializing number to 0
+
+number=0
+
+#while loop for the use cases
+
+while getopts ":n:h" opt; do
+
+	case "${opt}" in
+	h )
+	  echo '"Usage = ./lnnm filename" OR'
+	  echo '"Usage = ./lnnm filename [-n]" to prefix numbering on each line of file.' 
+	  exit 0
+	;;
+        \? )
+	  echo '"Usage = ./lnnm filename" OR'
+          echo '"Usaeg = ./lnnm filename [-n]" to prefix numbering on each line of file.'
+          exit 0
+        ;;
+
+	  esac
+        done
+
+#loop to check the arguments passed
+
+if [[ "$dispNum" == '-n' ]]; then
+
+	while read line; do
+	
+	  ((number++))
+
+	  echo "$number. $line";
+
+	done < $fileName
+
+elif [[ "$dispNum" == '' ]]; then
+
+	while read line; do
+
+	  echo "$line"
+
+	done < $fileName
+fi
+exit 0

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+url="$2"
+
+file="newfile"
+
+#function to save links to a file 
+
+savelinks(){
+	wget -O $file $url -q
+    grep -Po '(?<=href=")(https)[^"]*' $file > urlFile
+    rm $file
+}
+
+usage(){
+	echo "Usage = ./links [-f] [url]"
+}
+
+while getopts ":f:h" opt; do
+  case ${opt} in
+    f ) savelinks
+    echo 'Links saved to a file named "urlFile"'
+      ;;
+    h )  usage
+      ;;
+    \? ) usage
+      ;;
+  esac
+done
