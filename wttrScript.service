@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily weather report
+
+[Service]
+ExecStart=/home/vagrant/wttrScript
+Restart=Always
+
+
+[Install]
+WantedBy=multi-user.target

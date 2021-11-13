@@ -1,0 +1,10 @@
+[Unit]
+Description=Daily Weather Report Timer
+
+[Timer]
+Unit=wttrScript.service
+OnBootSec=15min
+OnUnitActiveSec=1d
+
+[Install]
+WantedBy=timers.target
